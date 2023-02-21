@@ -21,6 +21,8 @@ const EmployeesContainer = () => {
   }, []);
 
   return (
+    /**TODO : on pourrait englober le code ci-dessous dans un composant pour gérer la pagination.
+     * On peut stocker dans un state les index à afficher. */
     <EmployeesWrapper>
       {employees.map((employee) => (
         <EmployeeComponent employee={employee} />
