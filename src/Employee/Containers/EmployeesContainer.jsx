@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import EmployeeComponent from "../Components/EmployeeComponent";
 import EmployeesWrapper from "../Components/EmployeesWrapper";
+import Pagination from "../../common/Components/Pagination";
 
 const EmployeesContainer = () => {
   const [employees, setEmployees] = useState([]);
@@ -21,13 +22,15 @@ const EmployeesContainer = () => {
   }, []);
 
   return (
-    /**TODO : on pourrait englober le code ci-dessous dans un composant pour gérer la pagination.
-     * On peut stocker dans un state les index à afficher. */
-    <EmployeesWrapper>
-      {employees.map((employee) => (
-        <EmployeeComponent employee={employee} />
-      ))}
-    </EmployeesWrapper>
+    <Pagination items={employees}>
+      {(items) => (
+        <EmployeesWrapper>
+          {items.map((employee) => (
+            <EmployeeComponent employee={employee} />
+          ))}
+        </EmployeesWrapper>
+      )}
+    </Pagination>
   );
 };
 
