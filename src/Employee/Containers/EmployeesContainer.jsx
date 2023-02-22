@@ -1,34 +1,27 @@
 import React from "react";
-import { useState, useEffect } from "react";
 import EmployeeComponent from "../Components/EmployeeComponent";
 import EmployeesWrapper from "../Components/EmployeesWrapper";
 import Pagination from "../../common/Components/Pagination";
+import { useFetchEmployees } from "../hooks";
 
 const EmployeesContainer = () => {
-  const [employees, setEmployees] = useState([]);
-  useEffect(() => {
-    const fetchEmployees = async () => {
-      try {
-        const response = await fetch(
-          "https://my.api.mockaroo.com/employee.json?key=53b1b110"
-        );
-        const employees = await response.json();
-        setEmployees(employees);
-      } catch (e) {
-        throw e;
-      }
-    };
-    fetchEmployees();
-  }, []);
+  const { employees, requestState } = useFetchEmployees();
 
   return (
     <Pagination items={employees}>
       {(items) => (
-        <EmployeesWrapper>
-          {items.map((employee) => (
-            <EmployeeComponent employee={employee} />
-          ))}
-        </EmployeesWrapper>
+        <div>
+          {requestState === "pending" ? (
+            <div style={{ paddingTop: 20 }}>"Chargement en cours..."</div>
+          ) : null}
+          {requestState === "done" ? (
+            <EmployeesWrapper>
+              {items.map((employee) => (
+                <EmployeeComponent employee={employee} />
+              ))}
+            </EmployeesWrapper>
+          ) : null}
+        </div>
       )}
     </Pagination>
   );
