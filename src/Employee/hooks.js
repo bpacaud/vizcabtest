@@ -6,6 +6,7 @@ export const useFetchEmployees = () => {
   useEffect(() => {
     const fetchEmployees = async () => {
       setRequestState("pending");
+      // On pourrait extraire et mutualiser la logique de fetch et de gestion d'erreur ici.
       try {
         const response = await fetch(
           "https://my.api.mockaroo.com/employee.json?key=53b1b110"
