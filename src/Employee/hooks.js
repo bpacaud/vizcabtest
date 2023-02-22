@@ -10,11 +10,16 @@ export const useFetchEmployees = () => {
         const response = await fetch(
           "https://my.api.mockaroo.com/employee.json?key=53b1b110"
         );
-        const employees = await response.json();
-        setEmployees(employees);
-        setRequestState("done");
+        if (response.status === 200) {
+          const employees = await response.json();
+          setEmployees(employees);
+          setRequestState("done");
+        } else {
+          setRequestState("failed");
+        }
       } catch (e) {
-        throw e;
+        setRequestState("failed");
+        //throw e;
       }
     };
     fetchEmployees();

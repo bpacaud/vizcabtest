@@ -1,9 +1,10 @@
 import React from "react";
+import { titleStyle } from "../../common/styles";
 
 const EmployeesWrapper = ({ children }) => {
   return (
     <div>
-      <div style={{ padding: 20 }}>Les employé.es</div>
+      <div style={titleStyle}>Les employé.es</div>
       <div
         style={{
           display: "flex",

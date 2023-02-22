@@ -11,3 +11,7 @@ export const frameStyle = {
 export const dataStyle = {
   fontSize: "medium",
 };
+
+export const titleStyle = {
+  padding: 20,
+};
